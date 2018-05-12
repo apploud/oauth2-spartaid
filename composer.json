@@ -20,5 +20,8 @@
         "psr-4": {
             "Apploud\\OAuth2\\Client\\": "src"
         }
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse src --level=max"
     }
 }
