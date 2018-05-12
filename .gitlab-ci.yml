@@ -1,0 +1,19 @@
+stages:
+    - build
+    - test
+
+image: registry.gitlab.com/apploud/docker/webserver:latest
+
+composer:
+    stage: build
+    script:
+        - composer install --no-interaction --ansi --prefer-dist --optimize-autoloader --ignore-platform-reqs
+    artifacts:
+        paths:
+            - vendor/
+        expire_in: 24h
+
+phpstan:
+    stage: test
+    script:
+        - vendor/bin/phpstan analyse src --level=max

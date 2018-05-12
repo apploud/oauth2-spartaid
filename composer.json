@@ -1,0 +1,24 @@
+{
+    "name": "apploud/oauth2-spartaid",
+    "description": "Spartaid OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+    "type": "library",
+    "require": {
+        "league/oauth2-client": "^2.3"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.9.2"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Jan Mikeš",
+            "email": "jan.mikes@apploud.cz"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Apploud\\OAuth2\\Client\\": "src"
+        }
+    }
+}
