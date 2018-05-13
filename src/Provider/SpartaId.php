@@ -34,6 +34,18 @@ class SpartaId extends AbstractProvider
     }
 
 
+    public function getProfileUrl(): string
+    {
+        return self::BASE;
+    }
+
+
+    public function getEditProfileUrl(): string
+    {
+        return self::BASE . '/user/edit-profile';
+    }
+
+
     /**
      * @return string[]
      */
