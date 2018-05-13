@@ -12,6 +12,7 @@ class SpartaId extends AbstractProvider
 {
     use BearerAuthorizationTrait;
 
+    public const ACCESS_TOKEN_RESOURCE_OWNER_ID = 'id';
 
     private const BASE = 'https://id.sparta.cz';
 
