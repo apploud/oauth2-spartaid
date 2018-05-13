@@ -46,6 +46,12 @@ class SpartaId extends AbstractProvider
     }
 
 
+    public function getRegistrationUrl(): string
+    {
+        return self::BASE . '/sign/up';
+    }
+
+
     /**
      * @return string[]
      */
