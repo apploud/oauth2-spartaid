@@ -19,7 +19,7 @@ class SpartaId extends AbstractProvider
 
     public function getBaseAuthorizationUrl(): string
     {
-        return self::BASE . '/oauth2/authorize?returnUrl=' . $_SERVER['REQUEST_URI'];
+        return self::BASE . '/oauth2/authorize?returnUrl=' . $this->getRequestUri();
     }
 
 
@@ -37,19 +37,19 @@ class SpartaId extends AbstractProvider
 
     public function getProfileUrl(): string
     {
-        return self::BASE . '/?returnUrl=' . $_SERVER['REQUEST_URI'];
+        return self::BASE . '/?returnUrl=' . $this->getRequestUri();
     }
 
 
     public function getEditProfileUrl(): string
     {
-        return self::BASE . '/user/edit-profile?returnUrl=' . $_SERVER['REQUEST_URI'];
+        return self::BASE . '/user/edit-profile?returnUrl=' . $this->getRequestUri();
     }
 
 
     public function getRegistrationUrl(): string
     {
-        return self::BASE . '/sign/up?returnUrl=' . $_SERVER['REQUEST_URI'];
+        return self::BASE . '/sign/up?returnUrl=' . $this->getRequestUri();
     }
 
 
@@ -77,5 +77,15 @@ class SpartaId extends AbstractProvider
     protected function createResourceOwner(array $response, AccessToken $token): SpartaIdResourceOwner
     {
         return new SpartaIdResourceOwner($response);
+    }
+
+
+    protected function getRequestUri(): string
+    {
+        if (isset($_SERVER['REQUEST_URI'])) {
+            return $_SERVER['REQUEST_URI'];
+        }
+
+        return '';
     }
 }
