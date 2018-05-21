@@ -82,10 +82,13 @@ class SpartaId extends AbstractProvider
 
     protected function getRequestUri(): string
     {
-        if (isset($_SERVER['REQUEST_URI'])) {
-            return $_SERVER['REQUEST_URI'];
+        if (!isset($_SERVER['REQUEST_URI'])) {
+            return '';
         }
 
-        return '';
+        $protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
+        $actualLink = $protocol . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        return $actualLink;
     }
 }
