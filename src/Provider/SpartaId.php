@@ -16,10 +16,21 @@ class SpartaId extends AbstractProvider
 
     private const BASE = 'https://id.sparta.cz';
 
+    /**
+     * @var string
+     */
+    private $returnUrl;
+
+
+    public function setReturnUrl(string $url): void
+    {
+        $this->returnUrl = $url;
+    }
+
 
     public function getBaseAuthorizationUrl(): string
     {
-        return self::BASE . '/oauth2/authorize?returnUrl=' . $this->getRequestUri();
+        return self::BASE . '/oauth2/authorize?returnUrl=' . $this->getReturnUrl();
     }
 
 
@@ -37,19 +48,19 @@ class SpartaId extends AbstractProvider
 
     public function getProfileUrl(): string
     {
-        return self::BASE . '/?returnUrl=' . $this->getRequestUri();
+        return self::BASE . '/?returnUrl=' . $this->getReturnUrl();
     }
 
 
     public function getEditProfileUrl(): string
     {
-        return self::BASE . '/user/edit-profile?returnUrl=' . $this->getRequestUri();
+        return self::BASE . '/user/edit-profile?returnUrl=' . $this->getReturnUrl();
     }
 
 
     public function getRegistrationUrl(): string
     {
-        return self::BASE . '/sign/up?returnUrl=' . $this->getRequestUri();
+        return self::BASE . '/sign/up?returnUrl=' . $this->getReturnUrl();
     }
 
 
@@ -80,8 +91,12 @@ class SpartaId extends AbstractProvider
     }
 
 
-    protected function getRequestUri(): string
+    protected function getReturnUrl(): string
     {
+        if ($this->returnUrl) {
+            return $this->returnUrl;
+        }
+
         if (!isset($_SERVER['REQUEST_URI'])) {
             return '';
         }
