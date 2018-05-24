@@ -4,9 +4,9 @@ namespace Apploud\OAuth2\Client\Provider;
 
 class SpartaIdEnvironment
 {
-    public const PRODUCTION = true;
+    public const PRODUCTION = 'production';
 
-    public const DEVELOPMENT = false;
+    public const DEVELOPMENT = 'development';
 
     public const BASE_URL = [
         self::PRODUCTION => 'https://id.sparta.cz',

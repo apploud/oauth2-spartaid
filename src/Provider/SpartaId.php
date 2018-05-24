@@ -8,14 +8,14 @@ use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use Psr\Http\Message\ResponseInterface;
 
-class SpartaId extends AbstractProvider
+final class SpartaId extends AbstractProvider
 {
     use BearerAuthorizationTrait;
 
     public const ACCESS_TOKEN_RESOURCE_OWNER_ID = 'id';
 
     /**
-     * @var bool
+     * @var string
      */
     private $environment = SpartaIdEnvironment::DEVELOPMENT;
 
