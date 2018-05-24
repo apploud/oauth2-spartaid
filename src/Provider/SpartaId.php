@@ -14,7 +14,10 @@ class SpartaId extends AbstractProvider
 
     public const ACCESS_TOKEN_RESOURCE_OWNER_ID = 'id';
 
-    private const BASE = 'https://id.sparta.cz';
+    /**
+     * @var bool
+     */
+    private $environment = SpartaIdEnvironment::DEVELOPMENT;
 
     /**
      * @var string
@@ -30,37 +33,37 @@ class SpartaId extends AbstractProvider
 
     public function getBaseAuthorizationUrl(): string
     {
-        return self::BASE . '/oauth2/authorize?returnUrl=' . $this->getReturnUrl();
+        return $this->getBaseUrl() . '/oauth2/authorize?returnUrl=' . $this->getReturnUrl();
     }
 
 
     public function getBaseAccessTokenUrl(array $params): string
     {
-        return self::BASE . '/oauth2/access-token';
+        return $this->getBaseUrl() . '/oauth2/access-token';
     }
 
 
     public function getResourceOwnerDetailsUrl(AccessToken $token): string
     {
-        return self::BASE . '/api/1.0/profile';
+        return $this->getBaseUrl() . '/api/1.0/profile?returnUrl=' . $this->getReturnUrl();
     }
 
 
     public function getProfileUrl(): string
     {
-        return self::BASE . '/?returnUrl=' . $this->getReturnUrl();
+        return $this->getBaseUrl() . '/?returnUrl=' . $this->getReturnUrl();
     }
 
 
     public function getEditProfileUrl(): string
     {
-        return self::BASE . '/user/edit-profile?returnUrl=' . $this->getReturnUrl();
+        return $this->getBaseUrl() . '/user/edit-profile?returnUrl=' . $this->getReturnUrl();
     }
 
 
     public function getRegistrationUrl(): string
     {
-        return self::BASE . '/sign/up?returnUrl=' . $this->getReturnUrl();
+        return $this->getBaseUrl() . '/sign/up?returnUrl=' . $this->getReturnUrl();
     }
 
 
@@ -94,7 +97,7 @@ class SpartaId extends AbstractProvider
     protected function getReturnUrl(): string
     {
         if ($this->returnUrl) {
-            return $this->returnUrl;
+            return urlencode($this->returnUrl);
         }
 
         if (!isset($_SERVER['REQUEST_URI'])) {
@@ -104,6 +107,12 @@ class SpartaId extends AbstractProvider
         $protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
         $actualLink = $protocol . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        return $actualLink;
+        return urlencode($actualLink);
+    }
+
+
+    private function getBaseUrl(): string
+    {
+        return SpartaIdEnvironment::BASE_URL[$this->environment];
     }
 }
