@@ -10,6 +10,6 @@ class SpartaIdEnvironment
 
     public const BASE_URL = [
         self::PRODUCTION => 'https://id.sparta.cz',
-        self::DEVELOPMENT => 'https://dev7.apploud.cz/sparta/id',
+        self::DEVELOPMENT => 'https://spartaid-dev.apploud.cz',
     ];
 }
