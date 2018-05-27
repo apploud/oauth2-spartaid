@@ -17,7 +17,7 @@ final class SpartaId extends AbstractProvider
     /**
      * @var string
      */
-    private $environment = SpartaIdEnvironment::DEVELOPMENT;
+    protected $environment = SpartaIdEnvironment::DEVELOPMENT;
 
     /**
      * @var string
