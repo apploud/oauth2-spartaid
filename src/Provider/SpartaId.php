@@ -67,6 +67,18 @@ final class SpartaId extends AbstractProvider
     }
 
 
+    public function getOrderKidMembershipUrl(): string
+	{
+		return $this->getBaseUrl() . '/api/1.0/orders/memberships/kids?returnUrl=' . $this->getReturnUrl();
+	}
+
+
+    public function getBaseUrl(): string
+    {
+        return SpartaIdEnvironment::BASE_URL[$this->environment];
+    }
+
+
     /**
      * @return string[]
      */
@@ -111,8 +123,4 @@ final class SpartaId extends AbstractProvider
     }
 
 
-    private function getBaseUrl(): string
-    {
-        return SpartaIdEnvironment::BASE_URL[$this->environment];
-    }
 }
