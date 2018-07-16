@@ -75,8 +75,13 @@ final class SpartaId extends AbstractProvider
 
 	public function getKidMembershipOrderRecapitulationUrl(string $orderId): string
 	{
-
 		return $this->getBaseUrl() . "/kid-membership/order-recapitulation?orderId=$orderId&returnUrl=" . $this->getReturnUrl();
+	}
+
+
+	public function getLogoutUrl(): string
+	{
+		return $this->getBaseUrl() . '?do=logout&returnUrl=' . $this->getReturnUrl();
 	}
 
 
