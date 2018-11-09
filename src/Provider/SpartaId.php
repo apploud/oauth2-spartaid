@@ -91,6 +91,12 @@ final class SpartaId extends AbstractProvider
 	}
 
 
+	public function getHasSpartaCampMembershipUrl(): string
+	{
+		return $this->getBaseUrl() . '/api/1.0/orders/memberships/spartacamp';
+	}
+
+
     public function getBaseUrl(): string
     {
         return SpartaIdEnvironment::BASE_URL[$this->environment];
