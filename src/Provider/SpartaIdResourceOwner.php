@@ -6,6 +6,9 @@ use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
 class SpartaIdResourceOwner implements ResourceOwnerInterface
 {
+	public const GENDER_MALE = 'Muž';
+	public const GENDER_FEMALE = 'Žena';
+
     /**
      * @var array
      */
@@ -42,6 +45,12 @@ class SpartaIdResourceOwner implements ResourceOwnerInterface
     public function getLastName(): string
     {
         return $this->data['last_name'];
+    }
+
+
+    public function getGender(): string
+    {
+        return $this->data['gender'];
     }
 
 
