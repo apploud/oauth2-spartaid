@@ -7,9 +7,7 @@ $config = [
     'clientId' => 'my-client-id',
     'clientSecret' => 'my-client-secret',
     'redirectUri' => 'https://my-uri.example.com',
-    'environment' => Apploud\OAuth2\Client\Provider\SpartaIdEnvironment::PRODUCTION, 
-    // OR
-    'environment' => Apploud\OAuth2\Client\Provider\SpartaIdEnvironment::DEVELOPMENT, 
+    'environment' => Apploud\OAuth2\Client\Provider\SpartaIdEnvironment::DEVELOPMENT, // or STAGING or PRODUCTION 
 ];
 
 $provider = new Apploud\OAuth2\Client\Provider\SpartaId($config);
