@@ -6,7 +6,7 @@ class SpartaIdEnvironment
 {
     public const PRODUCTION = 'production';
 
-    public const STAGING = 'development';
+    public const STAGING = 'staging';
 
     public const DEVELOPMENT = 'development';
 
