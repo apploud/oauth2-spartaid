@@ -10,13 +10,13 @@ class SpartaIdResourceOwner implements ResourceOwnerInterface
 	public const GENDER_FEMALE = 'Žena';
 
     /**
-     * @var array
+     * @var mixed[]
      */
     private $data;
 
 
     /**
-     * @param string[] $data
+     * @param mixed[] $data
      */
     public function __construct(array $data)
     {
@@ -58,6 +58,12 @@ class SpartaIdResourceOwner implements ResourceOwnerInterface
     {
         return $this->data['salesforce_id'];
     }
+
+
+	public function hasActiveMembership(): bool
+	{
+		return $this->data['has_membership'];
+	}
 
 
     public function toArray(): array
