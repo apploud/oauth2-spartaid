@@ -6,6 +6,7 @@ use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
+use Nette\Utils\Json;
 use Psr\Http\Message\ResponseInterface;
 
 final class SpartaId extends AbstractProvider
@@ -101,6 +102,27 @@ final class SpartaId extends AbstractProvider
     {
         return SpartaIdEnvironment::BASE_URL[$this->environment];
     }
+
+
+	public function logWebPageLoad(AccessToken $accessToken, string $url, ?string $ipAddress, ?string $userAgent): void
+	{
+		$data = [
+			'url' => $url,
+			'ipAddress' => $ipAddress ?: null,
+			'userAgent' => $userAgent ?: null,
+		];
+
+		$request = $this->getAuthenticatedRequest(
+			'POST',
+			$this->getBaseUrl() . '/api/1.0/user/activities/web-page-load',
+			$accessToken,
+			[
+				'body' => Json::encode($data),
+			]
+		);
+
+		$this->getHttpClient()->send($request);
+	}
 
 
     /**
