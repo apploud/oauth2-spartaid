@@ -66,6 +66,12 @@ class SpartaIdResourceOwner implements ResourceOwnerInterface
 	}
 
 
+	public function getYourpassUrl(): ?string
+	{
+		return $this->data['yourpass_url'] ?: null;
+	}
+
+
     public function toArray(): array
     {
         return $this->data;
