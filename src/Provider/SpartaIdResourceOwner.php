@@ -66,6 +66,12 @@ class SpartaIdResourceOwner implements ResourceOwnerInterface
 	}
 
 
+	public function getActiveMembershipMarketingType(): ?string
+	{
+		return $this->data['active_membership_marketing_type'];
+	}
+
+
 	public function getYourpassUrl(): ?string
 	{
 		return $this->data['yourpass_url'] ?: null;
