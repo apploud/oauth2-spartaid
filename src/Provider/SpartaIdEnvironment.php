@@ -10,9 +10,12 @@ class SpartaIdEnvironment
 
     public const DEVELOPMENT = 'development';
 
+    public const CLIENT = 'client';
+
     public const BASE_URL = [
         self::PRODUCTION => 'https://id.sparta.cz',
         self::STAGING => 'https://sparta-id.apploud.cz',
-        self::DEVELOPMENT => 'https://spartaid-dev.apploud.cz',
+        self::DEVELOPMENT => 'https://ssr7dev.apploud.cz/sparta/id',
+        self::CLIENT => 'https://ssr7client.apploud.cz/sparta/id',
     ];
 }
